@@ -18,8 +18,8 @@ namespace Palindromic
             {
                 p2 += p[i];
             }
-            string p3 = p2.Replace(" ", String.Empty);
-            if (p3 == p)
+            p2 = p2.Replace(" ", String.Empty);
+            if (p2 == p)
             {
                 result = true;
             }
