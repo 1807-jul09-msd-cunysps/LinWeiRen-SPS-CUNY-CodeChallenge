@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <title>Our superheroes</title>
+    <script src="Scripts/jquery-3.3.1.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Faster+One" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <div id="headerTitle"></div>
+        <div id="headerNote"></div>
+    </header>
+
+    <section>
+        <div id="first-hero">
+        </div>
+        <div id="second-hero">
+        </div>
+        <div id="thrid-hero">
+        </div>
+    </section>
+
+    <script>
+        var header = document.querySelector('header');
+        var section = document.querySelector('section');
+        var url = 'https://mdn.github.io/learning-area/javascript/oojs/json/superheroes.json';
+        var request = new XMLHttpRequest();
+        request.open('GET', url);
+        request.responseType = 'json';
+        request.send();
+        request.onload = function () {
+            var superHeroes = request.response;
+            populateHeader(superHeroes);
+            showHeroes(superHeroes);
+        }
+        function populateHeader(superHeroes) {
+            var title = superHeroes.squadName;
+            var hometown = superHeroes.homeTown;
+            var form = superHeroes.formed;
+            $("#headerTitle").html("<h1>" + title + "</h1>");
+            $("#headerNote").html("<p>Hometown: " + hometown + " // Formed: " + form);
+        }
+        function showHeroes(superHeroes) {
+            $("#first-hero").html("<article><h2>" + superHeroes.members[0].name +
+                "</h2><section><p>Secret identity: " + superHeroes.members[0].secretIdentity +
+                "</p><p>Age: " + superHeroes.members[0].age + "</p><p>Superpowers:</p>" +
+                "<ul><li>" + superHeroes.members[0].powers[0] + "</li><li>" + superHeroes.members[0].powers[1] + "</li>" +
+                "<li>" + superHeroes.members[0].powers[2] + "</li></ul></section></article>")
+            $("#second-hero").html("<article><h2>" + superHeroes.members[1].name +
+                "</h2><section><p>Secret identity: " + superHeroes.members[1].secretIdentity +
+                "</p><p>Age: " + superHeroes.members[1].age + "</p><p>Superpowers:</p>" +
+                "<ul><li>" + superHeroes.members[1].powers[0] + "</li><li>" + superHeroes.members[1].powers[1] + "</li>" +
+                "<li>" + superHeroes.members[1].powers[2] + "</li></ul></section></article>")
+            $("#thrid-hero").html("<article><h2>" + superHeroes.members[2].name +
+                "</h2><section><p>Secret identity: " + superHeroes.members[2].secretIdentity +
+                "</p><p>Age: " + superHeroes.members[2].age + "</p><p>Superpowers:</p>" +
+                "<ul><li>" + superHeroes.members[2].powers[0] + "</li><li>" + superHeroes.members[1].powers[1] + "</li>" +
+                "<li>" + superHeroes.members[2].powers[2] + "<li>" + superHeroes.members[2].powers[3] + "</li>" + "<li>" + superHeroes.members[2].powers[4] + "</li>" +
+                "</li></ul></section></article>")
+        }
+    </script>
+</body>
+</html>
